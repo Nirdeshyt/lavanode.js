@@ -71,6 +71,7 @@ class Player {
                         });
                         this.playing = true;
                     }), 4000);
+                    resolve()
                 }
             }));
         });
@@ -88,6 +89,7 @@ class Player {
                 });
                 this.queue.clear();
                 this.playing = false;
+                resolve()
             }));
         });
     }
@@ -102,6 +104,7 @@ class Player {
                 }
             });
             this.paused = true;
+            resolve()
         });
     }
     resume() {
@@ -115,6 +118,7 @@ class Player {
                 }
             });
             this.paused = false;
+            resolve()
         });
     }
     delete() {
@@ -122,6 +126,7 @@ class Player {
             yield this.node.rest.destroy(this.guildId);
             this.connected = false;
             this.playing = false;
+            resolve()
         });
     }
     setLoopType(type) {
