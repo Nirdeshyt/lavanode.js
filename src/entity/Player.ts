@@ -67,6 +67,7 @@ this.joined = false
             })
             this.playing = true
           }, 4000)
+          resolve();
           }
         })
     }
@@ -83,6 +84,7 @@ this.joined = false
         })
           this.queue.clear()
           this.playing = false
+         resolve()
       })
     }
     public async pause(): Promise<void> {
@@ -94,6 +96,7 @@ this.joined = false
         }
       })
       this.paused = true
+      resolve()
     }
     public async resume(): Promise<void> {
       if(this.paused) return
@@ -104,11 +107,13 @@ this.joined = false
         }
       })
       this.paused = false
+     resolve()
     }
     public async delete(): Promise<void> {
       await this.node.rest.destroy(this.guildId)
       this.connected = false
       this.playing = false
+      resolve()
     }
     public setLoopType(type: LoopType): void {
       if(type === LoopType.None || type === LoopType.Track || type === LoopType.Queue){
