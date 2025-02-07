@@ -67,9 +67,11 @@ this.joined = false
             })
             this.playing = true
           }, 4000)
-          resolve();
-          }
-        })
+          resolve()
+        } else {
+          reject("No voice channel connected")
+        }
+        }) 
     }
 
     public async stop(): Promise<void> {
@@ -88,7 +90,8 @@ this.joined = false
       })
     }
     public async pause(): Promise<void> {
-      if(this.paused) return
+      return new Promise(async (resolve, reject) => {
+        if(this.paused) return
       await this.node.rest.update({
         guildId: this.guildId,
         data: {
@@ -97,9 +100,11 @@ this.joined = false
       })
       this.paused = true
       resolve()
+      })
     }
     public async resume(): Promise<void> {
-      if(this.paused) return
+      return new Promise(async (resolve, reject) => {
+        if(this.paused) return
       await this.node.rest.update({
         guildId: this.guildId,
         data: {
@@ -107,13 +112,16 @@ this.joined = false
         }
       })
       this.paused = false
-     resolve()
+      resolve()
+      })
     }
     public async delete(): Promise<void> {
-      await this.node.rest.destroy(this.guildId)
-      this.connected = false
-      this.playing = false
-      resolve()
+      return new Promise(async (resolve, reject) => {
+        await this.node.rest.destroy(this.guildId)
+        this.connected = false
+        this.playing = false
+        resolve()
+      })
     }
     public setLoopType(type: LoopType): void {
       if(type === LoopType.None || type === LoopType.Track || type === LoopType.Queue){
