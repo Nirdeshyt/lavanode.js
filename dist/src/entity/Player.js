@@ -71,7 +71,10 @@ class Player {
                         });
                         this.playing = true;
                     }), 4000);
-                    resolve()
+                    resolve();
+                }
+                else {
+                    reject("No voice channel connected");
                 }
             }));
         });
@@ -89,44 +92,50 @@ class Player {
                 });
                 this.queue.clear();
                 this.playing = false;
-                resolve()
+                resolve();
             }));
         });
     }
     pause() {
         return __awaiter(this, void 0, void 0, function* () {
-            if (this.paused)
-                return;
-            yield this.node.rest.update({
-                guildId: this.guildId,
-                data: {
-                    pause: true
-                }
-            });
-            this.paused = true;
-            resolve()
+            return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+                if (this.paused)
+                    return;
+                yield this.node.rest.update({
+                    guildId: this.guildId,
+                    data: {
+                        pause: true
+                    }
+                });
+                this.paused = true;
+                resolve();
+            }));
         });
     }
     resume() {
         return __awaiter(this, void 0, void 0, function* () {
-            if (this.paused)
-                return;
-            yield this.node.rest.update({
-                guildId: this.guildId,
-                data: {
-                    pause: false
-                }
-            });
-            this.paused = false;
-            resolve()
+            return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+                if (this.paused)
+                    return;
+                yield this.node.rest.update({
+                    guildId: this.guildId,
+                    data: {
+                        pause: false
+                    }
+                });
+                this.paused = false;
+                resolve();
+            }));
         });
     }
     delete() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.node.rest.destroy(this.guildId);
-            this.connected = false;
-            this.playing = false;
-            resolve()
+            return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+                yield this.node.rest.destroy(this.guildId);
+                this.connected = false;
+                this.playing = false;
+                resolve();
+            }));
         });
     }
     setLoopType(type) {
