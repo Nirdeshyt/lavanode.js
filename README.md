@@ -1,6 +1,6 @@
-# Lavalink.js
+# Lavanode.js
 
-Lavalink.js is a library for interacting with Lavalink, a standalone audio streaming server, making it easy to integrate high-quality music playback into your Discord bot. This library simplifies managing Lavalink nodes, creating players, and streaming audio.
+Lavanode.js is a library for interacting with Lavalink, a standalone audio streaming server, making it easy to integrate high-quality music playback into your Discord bot. This library simplifies managing Lavalink nodes, creating players, and streaming audio.
 
 ## Features
 - Lightweight and efficient.
@@ -13,7 +13,7 @@ Lavalink.js is a library for interacting with Lavalink, a standalone audio strea
 Install the package via npm:
 
 ```bash
-npm install lavalink.js
+npm install lavanode.js
 ```
 
 ## Requirements
@@ -23,12 +23,12 @@ npm install lavalink.js
 
 ## Usage Example
 
-Here's a simple example to get started with `lavalink.js`:
+Here's a simple example to get started with `lavanode.js`:
 
 ### Setting Up the Client and Manager
 
 ```javascript
-const { Manager } = require("lavalink.js");
+const { Manager } = require("lavanode.js");
 const { Client, GatewayIntentBits } = require("discord.js");
 
 const client = new Client({
@@ -78,7 +78,7 @@ client.on("ready", () => {
   manager.init(client.user.id);
 });
 
-client.on("raw", (packet) => manager.packetUpdate(packet)); // send raw packet to lavalink.js for handling
+client.on("raw", (packet) => manager.packetUpdate(packet)); // send raw packet to lavanode.js for handling
 
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
