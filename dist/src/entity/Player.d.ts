@@ -23,6 +23,8 @@ export declare class Player {
     pause(): Promise<void>;
     resume(): Promise<void>;
     delete(): Promise<void>;
+    setVolume(volume: number): Promise<void>;
+    shuffle(): void;
     setLoopType(type: LoopType): void;
     skip(): Promise<void>;
     transferNode(node: Node): Promise<void>;

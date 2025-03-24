@@ -138,6 +138,25 @@ class Player {
             }));
         });
     }
+    setVolume(volume) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+                if (volume < 0 || volume > 1000) {
+                    reject("Volume must be greater than 0 and less than 1000");
+                }
+                yield this.node.rest.update({
+                    guildId: this.guildId,
+                    data: {
+                        volume: volume,
+                    }
+                });
+                resolve();
+            }));
+        });
+    }
+    shuffle() {
+        this.queue.shuffle();
+    }
     setLoopType(type) {
         if (type === __1.LoopType.None || type === __1.LoopType.Track || type === __1.LoopType.Queue) {
             this.loopType = type;

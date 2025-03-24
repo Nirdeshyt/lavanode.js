@@ -5,5 +5,6 @@ export declare class Queue {
     clear(): void;
     size(): number;
     shift(): any;
+    shuffle(): void;
 }
 //# sourceMappingURL=Queue.d.ts.map

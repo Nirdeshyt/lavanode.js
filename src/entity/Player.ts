@@ -123,6 +123,23 @@ this.joined = false
         resolve()
       })
     }
+    public async setVolume(volume: number): Promise<void> {
+      return new Promise(async (resolve, reject) => {
+        if(volume < 0 || volume > 1000) {
+          reject("Volume must be greater than 0 and less than 1000")
+        }
+        await this.node.rest.update({
+          guildId: this.guildId,
+          data: {
+            volume: volume,
+          }
+        })
+        resolve();
+      })
+    }
+    public shuffle(): void {
+      this.queue.shuffle();
+    }
     public setLoopType(type: LoopType): void {
       if(type === LoopType.None || type === LoopType.Track || type === LoopType.Queue){
         this.loopType = type
