@@ -141,6 +141,8 @@ The `Manager` and `Player` classes emit various events:
 - **`player.resume()`**: Resumes the playback.
 - **`player.queue.add(track)`**: Adds a track to the queue.
 - **`player.skip()`**: Skips current playing track.
+- **`player.shuffle()`**: Shuffles the queue.
+- **`player.setVolume(volume)`**: Changes the volume of the player.
 - **`player.transferNode(node)`**: Transfer current node of player to new one.
 
 ### `Rest`
