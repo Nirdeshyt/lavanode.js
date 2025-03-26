@@ -116,7 +116,7 @@ class Node {
                             this.manager.emit("debug", `The Player for guild ${player.guildId} is looping track`);
                         }
                         else {
-                            if (player.queue.size() >= 0) {
+                            if (player.queue.size() > 0) {
                                 yield player.play();
                             }
                             else {
@@ -127,7 +127,7 @@ class Node {
                         }
                     }
                     if (["loadFailed", "cleanup"].includes(payload.reason)) {
-                        if (player.queue.size() >= 0) {
+                        if (player.queue.size() > 0) {
                             player.play();
                         }
                         else {
